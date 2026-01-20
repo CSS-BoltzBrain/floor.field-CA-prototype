@@ -1,0 +1,84 @@
+# Train Cabin Configuration
+# Simulates passenger boarding in a narrow train corridor
+
+grid:
+  width: 80
+  height: 8
+
+simulation:
+  max_steps: 300
+  agent_count: 25
+
+# Floor field parameters (Burstedde model)
+floor_field:
+  static_strength: 3.0    # kS - higher value for more directed movement
+  dynamic_strength: 1.0   # kD - follow others' paths
+  diffusion_rate: 0.25    # alpha
+  decay_rate: 0.1         # delta
+
+agents:
+  friends_probability: 0.3  # Higher chance of groups on train
+  patience: 20              # Less patient in narrow space
+  speed: 1
+
+layout:
+  walls:
+    # Top wall
+    - type: rectangle
+      x: 0
+      y: 7
+      width: 80
+      height: 1
+    # Bottom wall
+    - type: rectangle
+      x: 0
+      y: 0
+      width: 80
+      height: 1
+    # Seat blocks (representing occupied seats/obstacles)
+    - type: rectangle
+      x: 10
+      y: 2
+      width: 3
+      height: 4
+    - type: rectangle
+      x: 25
+      y: 2
+      width: 3
+      height: 4
+    - type: rectangle
+      x: 40
+      y: 2
+      width: 3
+      height: 4
+    - type: rectangle
+      x: 55
+      y: 2
+      width: 3
+      height: 4
+    - type: rectangle
+      x: 70
+      y: 2
+      width: 3
+      height: 4
+
+  hotspots:
+    # Luggage storage areas
+    - x: 20
+      y: 4
+      attraction: 0.5
+    - x: 50
+      y: 4
+      attraction: 0.5
+
+  spawn_zones:
+    # Door entrance (passengers entering from left)
+    - type: line
+      start: [1, 3]
+      end: [1, 4]
+      direction: east
+
+export:
+  csv: true
+  snapshot: true
+  gif: false

@@ -1,0 +1,75 @@
+# Supermarket Aisle Configuration
+# Simulates pedestrian flow in a supermarket aisle with shelves and hotspots
+
+grid:
+  width: 60
+  height: 15
+
+simulation:
+  max_steps: 500
+  agent_count: 40
+
+# Floor field parameters (Burstedde model)
+floor_field:
+  static_strength: 2.5    # kS - sensitivity to goal distance
+  dynamic_strength: 1.5   # kD - sensitivity to pheromone trails
+  diffusion_rate: 0.2     # alpha - pheromone spread rate
+  decay_rate: 0.05        # delta - pheromone evaporation rate
+
+agents:
+  friends_probability: 0.15
+  patience: 30
+  speed: 1
+
+layout:
+  walls:
+    # Top boundary
+    - type: rectangle
+      x: 0
+      y: 14
+      width: 60
+      height: 1
+    # Bottom boundary
+    - type: rectangle
+      x: 0
+      y: 0
+      width: 60
+      height: 1
+    # Shelf 1 (left side)
+    - type: rectangle
+      x: 15
+      y: 3
+      width: 2
+      height: 9
+    # Shelf 2 (right side)
+    - type: rectangle
+      x: 43
+      y: 3
+      width: 2
+      height: 9
+
+  hotspots:
+    # Popular items near shelves
+    - x: 17
+      y: 7
+      attraction: 0.8
+    - x: 41
+      y: 7
+      attraction: 0.8
+
+  spawn_zones:
+    # West entrance (heading east)
+    - type: line
+      start: [1, 5]
+      end: [1, 9]
+      direction: east
+    # East entrance (heading west)
+    - type: line
+      start: [58, 5]
+      end: [58, 9]
+      direction: west
+
+export:
+  csv: true
+  snapshot: true
+  gif: false
