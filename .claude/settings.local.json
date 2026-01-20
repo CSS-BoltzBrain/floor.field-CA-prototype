@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /home/tai/work-my-projects/workspace-master.course.block03-Complex.System.Simulation/assignment-group/floor.field-CA-prototype log --oneline -5)",
+      "Bash(uv pip install:*)",
+      "Bash(/home/tai/work-my-projects/workspace-master.course.block03-Complex.System.Simulation/venv-claude.code/bin/python:*)"
+    ]
+  }
+}
