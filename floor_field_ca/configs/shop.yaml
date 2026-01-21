@@ -1,0 +1,102 @@
+# Shop Configuration
+# Single-sided entrance/exit layout - both openings on the left (west) wall
+# Simulates a small retail shop where customers enter, browse, and exit through the same side
+
+grid:
+  width: 40
+  height: 20
+
+simulation:
+  max_steps: 500
+  agent_count: 30
+
+# Floor field parameters (Burstedde model)
+floor_field:
+  static_strength: 2.5    # kS - sensitivity to goal distance
+  dynamic_strength: 1.5   # kD - sensitivity to pheromone trails
+  diffusion_rate: 0.2     # alpha - pheromone spread rate
+  decay_rate: 0.05        # delta - pheromone evaporation rate
+
+agents:
+  friends_probability: 0.15
+  patience: 30
+  speed: 1
+
+layout:
+  walls:
+    # Top boundary (solid wall)
+    - type: rectangle
+      x: 0
+      y: 19
+      width: 40
+      height: 1
+    # Bottom boundary (solid wall)
+    - type: rectangle
+      x: 0
+      y: 0
+      width: 40
+      height: 1
+    # Right boundary (solid wall - closed side)
+    - type: rectangle
+      x: 39
+      y: 0
+      width: 1
+      height: 20
+    # Left boundary - top section (above exit)
+    - type: rectangle
+      x: 0
+      y: 14
+      width: 1
+      height: 5
+    # Left boundary - middle section (between entrance and exit)
+    - type: rectangle
+      x: 0
+      y: 8
+      width: 1
+      height: 4
+    # Left boundary - bottom section (below entrance)
+    - type: rectangle
+      x: 0
+      y: 1
+      width: 1
+      height: 4
+    # Display shelf 1 (center-left)
+    - type: rectangle
+      x: 12
+      y: 6
+      width: 3
+      height: 8
+    # Display shelf 2 (center-right)
+    - type: rectangle
+      x: 25
+      y: 6
+      width: 3
+      height: 8
+
+  hotspots:
+    # Popular items near shelves - attracts customers to browse
+    - x: 15
+      y: 10
+      attraction: 0.8
+    - x: 28
+      y: 10
+      attraction: 0.8
+    # Exit point - strong attraction to guide agents out
+    - x: 0
+      y: 15
+      attraction: 1.0
+
+  spawn_zones:
+    # Entrance on left wall (lower opening) - agents enter heading east
+    - type: line
+      start: [1, 5]
+      end: [1, 7]
+      direction: east
+
+  # Note: Exit is at y=12-13 on the left wall (x=0)
+  # Agents are attracted to the exit hotspot at (0, 15)
+
+export:
+  csv: true
+  snapshot: true
+  gif: false
