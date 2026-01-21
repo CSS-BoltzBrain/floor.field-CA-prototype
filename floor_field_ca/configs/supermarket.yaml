@@ -3,7 +3,7 @@
 
 grid:
   width: 60
-  height: 15
+  height: 30
 
 simulation:
   max_steps: 500
@@ -26,7 +26,7 @@ layout:
     # Top boundary
     - type: rectangle
       x: 0
-      y: 14
+      y: 29
       width: 60
       height: 1
     # Bottom boundary
@@ -35,18 +35,72 @@ layout:
       y: 0
       width: 60
       height: 1
-    # Shelf 1 (left side)
+    # Right boundary
     - type: rectangle
-      x: 15
-      y: 3
-      width: 2
-      height: 9
-    # Shelf 2 (right side)
+      x: 59
+      y: 0
+      height: 30
+      width: 1
+    # Left boundary 1
     - type: rectangle
-      x: 43
+      x: 0
+      y: 0
+      width: 1
+      height: 12
+    # Left boundary 2
+    - type: rectangle
+      x: 0
+      y: 18
+      width: 1
+      height: 12
+    # Shelf 1 
+    - type: rectangle
+      x: 3
       y: 3
-      width: 2
-      height: 9
+      width: 25
+      height: 2
+    # Shelf 2 
+    - type: rectangle
+      x: 3
+      y: 10
+      width: 25
+      height: 2
+    # Shelf 3
+    - type: rectangle
+      x: 32
+      y: 10
+      width: 25
+      height: 2
+    # Shelf 4
+    - type: rectangle
+      x: 32
+      y: 3
+      width: 25
+      height: 2
+    # Shelf 5
+    - type: rectangle
+      x: 3
+      y: 17
+      width: 25
+      height: 2
+    # Shelf 6
+    - type: rectangle
+      x: 32
+      y: 17
+      width: 25
+      height: 2
+    # Shelf 5
+    - type: rectangle
+      x: 3
+      y: 24
+      width: 25
+      height: 2
+    # Shelf 6
+    - type: rectangle
+      x: 32
+      y: 24
+      width: 25
+      height: 2
 
   hotspots:
     # Popular items near shelves
@@ -60,14 +114,9 @@ layout:
   spawn_zones:
     # West entrance (heading east)
     - type: line
-      start: [1, 5]
-      end: [1, 9]
-      direction: east
-    # East entrance (heading west)
-    - type: line
-      start: [58, 5]
-      end: [58, 9]
-      direction: west
+      start: [1, 12]
+      end: [1, 18]
+      direction: inward
 
 export:
   csv: true
